@@ -43,7 +43,6 @@ CREATE TABLE "profile" (
     "username" VARCHAR(40),
     "phone" VARCHAR(13),
     "address_ID" INT[],
-    "status" INT,
     "id_cart" INT REFERENCES "cart"("id"),
     "id_favorite" INT REFERENCES "favorite"("id"),
     "id_checkout_orders" INT REFERENCES "checkout_orders"("id"),
@@ -51,3 +50,7 @@ CREATE TABLE "profile" (
     "updated_at" TIMESTAMP DEFAULT NOW()
 );
 
+CREATE TABLE "user_permissions" (
+    "id_user" INT REFERENCES "users"("id"),
+    "status" INT
+);
