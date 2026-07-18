@@ -23,18 +23,25 @@ CREATE TABLE "favorite" (
     "updated_at" TIMESTAMP DEFAULT NOW()
 );
 
-CREATE TABLE "checkout_orders" (
+CREATE TABLE "orders" (
     "id" INT GENERATED ALWAYS AS IDENTITY PRIMARY KEY,
     "id_user" INT REFERENCES "users"("id"),
     "products_ID" INT[],
-    "status_checkout" INT,  
+    "status_checkout" INT,
+    "subtotal" BIGINT,
+    "total" BIGINT,  
     "created_at" TIMESTAMP DEFAULT NOW(),
     "updated_at" TIMESTAMP DEFAULT NOW()
 );
 
-CREATE TABLE "user_address" (
+CREATE TABLE "address" (
     "id" INT GENERATED ALWAYS AS IDENTITY PRIMARY KEY,
-    "id_user" INT REFERENCES "users"("id")
+    "id_user" INT REFERENCES "users"("id"),
+    "fulladdress" TEXT,
+    "city" VARCHAR(30),
+    "province" VARCHAR(30),
+    "postcode" VARCHAR(10),
+    "optional" TEXT
 );
 
 CREATE TABLE "profile" (
@@ -53,4 +60,11 @@ CREATE TABLE "profile" (
 CREATE TABLE "user_permissions" (
     "id_user" INT REFERENCES "users"("id"),
     "status" INT
+);
+
+CREATE TABLE "checkout_histories" (
+    "id_user" INT,
+    "products_ID" INT[],
+    "payment_method",
+    "order_status" INT,
 );
