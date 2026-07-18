@@ -44,6 +44,13 @@ CREATE TABLE "address" (
     "optional" TEXT
 );
 
+CREATE TABLE "checkout_histories" (
+    "id_user" INT,
+    "products_ID" INT[],
+    "payment_method" VARCHAR(22),
+    "order_status" INT
+);
+
 CREATE TABLE "profile" (
     "id_user" INT REFERENCES "users"("id"),
     "fullname" VARCHAR(40),
@@ -52,7 +59,6 @@ CREATE TABLE "profile" (
     "address_ID" INT[],
     "id_cart" INT REFERENCES "cart"("id"),
     "id_favorite" INT REFERENCES "favorite"("id"),
-    "id_checkout_orders" INT REFERENCES "checkout_orders"("id"),
     "created_at" TIMESTAMP DEFAULT NOW(),
     "updated_at" TIMESTAMP DEFAULT NOW()
 );
@@ -62,9 +68,3 @@ CREATE TABLE "user_permissions" (
     "status" INT
 );
 
-CREATE TABLE "checkout_histories" (
-    "id_user" INT,
-    "products_ID" INT[],
-    "payment_method",
-    "order_status" INT,
-);
