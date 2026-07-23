@@ -67,4 +67,3 @@ CREATE TABLE "user_permissions" (
     "id_user" INT REFERENCES "users"("id"),
     "status" INT
 );
-
