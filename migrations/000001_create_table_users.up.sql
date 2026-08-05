@@ -122,7 +122,7 @@ CREATE TABLE "categories_products" (
 CREATE TABLE "products_events" (
     "id_event" BIGINT REFERENCES "events"("id") ON DELETE CASCADE,
     "id_product" BIGINT REFERENCES "products"("id") ON DELETE CASCADE,
-    "discount" INT
+    "discount" INT,
     "created_at" TIMESTAMP DEFAULT NOW(),
     "updated_at" TIMESTAMP DEFAULT NOW()
 );
