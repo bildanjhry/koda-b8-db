@@ -14,6 +14,45 @@ CREATE TABLE "cart" (
     "updated_at" TIMESTAMP DEFAULT NOW()
 );
 
+CREATE TABLE "products" (
+    "id" BIGINT GENERATED ALWAYS AS IDENTITY PRIMARY KEY,
+    "slugs" VARCHAR(50),
+    "title" VARCHAR(50),
+    "price" INT,
+    "image" VARCHAR(100),
+    "alt" VARCHAR(50),
+    "description" TEXT,
+    "created_at" TIMESTAMP DEFAULT NOW(),
+    "updated_at" TIMESTAMP DEFAULT NOW()
+);
+
+CREATE TABLE "colors" (
+    "id" BIGINT GENERATED ALWAYS AS IDENTITY PRIMARY KEY,
+    "name" VARCHAR(15),
+    "hex" VARCHAR(15),
+    "created_at" TIMESTAMP DEFAULT NOW(),
+    "updated_at" TIMESTAMP DEFAULT NOW()
+);
+
+CREATE TABLE "sizes" (
+    "id" BIGINT GENERATED ALWAYS AS IDENTITY PRIMARY KEY,
+    "name" VARCHAR(15),
+    "created_at" TIMESTAMP DEFAULT NOW(),
+    "updated_at" TIMESTAMP DEFAULT NOW()
+);
+
+CREATE TABLE "products_variants" (
+    "id" BIGINT GENERATED ALWAYS AS IDENTITY PRIMARY KEY,
+    "id_product" BIGINT REFERENCES "products"("id"),
+    "id_color" BIGINT REFERENCES "colors"("id"),
+    "id_size" BIGINT REFERENCES "sizes"("id"),
+    "stocks" INT,
+    "price" BIGINT,
+    "sku" VARCHAR(20),
+    "created_at" TIMESTAMP DEFAULT NOW(),
+    "updated_at" TIMESTAMP DEFAULT NOW()
+);
+
 CREATE TABLE "cart_items" (
     "id" BIGINT GENERATED ALWAYS AS IDENTITY PRIMARY KEY,
     "id_cart" BIGINT REFERENCES "cart"("id"),
@@ -52,45 +91,6 @@ CREATE TABLE "orders" (
 CREATE TABLE "categories" (
     "id" BIGINT GENERATED ALWAYS AS IDENTITY PRIMARY KEY,
     "name" VARCHAR(40),
-    "created_at" TIMESTAMP DEFAULT NOW(),
-    "updated_at" TIMESTAMP DEFAULT NOW()
-);
-
-CREATE TABLE "products" (
-    "id" BIGINT GENERATED ALWAYS AS IDENTITY PRIMARY KEY,
-    "slugs" VARCHAR(50),
-    "title" VARCHAR(50),
-    "price" INT,
-    "image" VARCHAR(100),
-    "alt" VARCHAR(50),
-    "description" TEXT,
-    "created_at" TIMESTAMP DEFAULT NOW(),
-    "updated_at" TIMESTAMP DEFAULT NOW()
-);
-
-CREATE TABLE "colors" (
-    "id" BIGINT GENERATED ALWAYS AS IDENTITY PRIMARY KEY,
-    "name" VARCHAR(15),
-    "hex" VARCHAR(15),
-    "created_at" TIMESTAMP DEFAULT NOW(),
-    "updated_at" TIMESTAMP DEFAULT NOW()
-);
-
-CREATE TABLE "sizes" (
-    "id" BIGINT GENERATED ALWAYS AS IDENTITY PRIMARY KEY,
-    "name" VARCHAR(15),
-    "created_at" TIMESTAMP DEFAULT NOW(),
-    "updated_at" TIMESTAMP DEFAULT NOW()
-);
-
-CREATE TABLE "products_variants" (
-    "id" BIGINT GENERATED ALWAYS AS IDENTITY PRIMARY KEY,
-    "id_product" BIGINT REFERENCES "products"("id"),
-    "id_color" BIGINT REFERENCES "colors"("id"),
-    "id_size" BIGINT REFERENCES "sizes"("id"),
-    "stocks" INT,
-    "price" BIGINT,
-    "sku" VARCHAR(20),
     "created_at" TIMESTAMP DEFAULT NOW(),
     "updated_at" TIMESTAMP DEFAULT NOW()
 );
