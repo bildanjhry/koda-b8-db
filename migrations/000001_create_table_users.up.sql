@@ -184,8 +184,11 @@ CREATE TABLE "profile" (
 );
 
 CREATE TABLE "user_permissions" (
-    "id_user" INT REFERENCES "users"("id"),
+    "id_user" BIGINT REFERENCES "users"("id"),
     "status" INT,
     "created_at" TIMESTAMP DEFAULT NOW(),
     "updated_at" TIMESTAMP DEFAULT NOW()
 );
+
+INSERT INTO "users" ("email", "password") VALUES ('superuser@mail.com', 'admin123');
+INSERT INTO "user_permissions" ("id_user", "status") VALUES (1, 'admin123');
