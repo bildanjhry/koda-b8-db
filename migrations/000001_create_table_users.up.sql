@@ -191,4 +191,4 @@ CREATE TABLE "user_permissions" (
 );
 
 INSERT INTO "users" ("email", "password") VALUES ('superuser@mail.com', 'admin123');
-INSERT INTO "user_permissions" ("id_user", "status") VALUES (1, 'admin123');
+INSERT INTO "user_permissions" ("id_user", "status") VALUES (1, 6);
