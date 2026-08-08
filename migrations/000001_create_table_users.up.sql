@@ -163,13 +163,35 @@ CREATE TABLE "address" (
     "updated_at" TIMESTAMP DEFAULT NOW()
 );
 
+CREATE TABLE "checkout_address" (
+    "id" BIGINT GENERATED ALWAYS AS IDENTITY PRIMARY KEY,
+    "id_order" BIGINT REFERENCES "orders"("id"),
+    "recipient_name" VARCHAR(40),
+    "recipient_phone" VARCHAR(15),
+    "recipient_fulladdress" TEXT,
+    "recipient_city" VARCHAR(30),
+    "recipient_province" VARCHAR(30),
+    "recipient_postcode" VARCHAR(10),
+    "recipient_optional_address" TEXT,
+    "created_at" TIMESTAMP DEFAULT NOW(),
+    "updated_at" TIMESTAMP DEFAULT NOW()
+);
+
+CREATE TABLE "order_status" (
+    "id" INT GENERATED ALWAYS AS IDENTITY PRIMARY KEY,
+    "name" VARCHAR(40),
+    "created_at" TIMESTAMP DEFAULT NOW(),
+    "updated_at" TIMESTAMP DEFAULT NOW()
+);
+
 CREATE TABLE "checkout_histories" (
     "id" BIGINT GENERATED ALWAYS AS IDENTITY PRIMARY KEY,
     "id_user" BIGINT REFERENCES "users"("id"),
-    "id_order_item" BIGINT REFERENCES "order_items"("id"),
+    "id_order" BIGINT REFERENCES "orders"("id"),
+    "id_checkout_address" BIGINT REFERENCES "checkout_address"("id"),
     "id_payment_method" INT REFERENCES "payment_method"("id"),
     "id_delivery_method" INT REFERENCES "delivery_method"("id"),
-    "order_status" INT,
+    "id_order_status" INT REFERENCES "order_status"("id"),
     "created_at" TIMESTAMP DEFAULT NOW(),
     "updated_at" TIMESTAMP DEFAULT NOW()
 );
