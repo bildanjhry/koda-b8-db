@@ -130,6 +130,7 @@ CREATE TABLE "products_events" (
 CREATE TABLE "payment_method" (
     "id" INT GENERATED ALWAYS AS IDENTITY PRIMARY KEY,
     "name" VARCHAR(50),
+    "desc" VARCHAR(50),
     "created_at" TIMESTAMP DEFAULT NOW(),
     "updated_at" TIMESTAMP DEFAULT NOW()
 );
@@ -137,10 +138,10 @@ CREATE TABLE "payment_method" (
 CREATE TABLE "delivery_method" (
     "id" INT GENERATED ALWAYS AS IDENTITY PRIMARY KEY,
     "name" VARCHAR(50),
+    "desc" VARCHAR(50),
     "created_at" TIMESTAMP DEFAULT NOW(),
     "updated_at" TIMESTAMP DEFAULT NOW()
 );
-
 
 CREATE TABLE "order_items" (
     "id" BIGINT GENERATED ALWAYS AS IDENTITY PRIMARY KEY,

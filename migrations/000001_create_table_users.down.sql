@@ -4,6 +4,7 @@ DROP TABLE "address";
 DROP TABLE "checkout_histories";
 DROP TABLE "favorite";
 DROP TABLE "cart";
+DROP TABLE "checkout_address";
 DROP TABLE "order_items";
 DROP TABLE "orders";
 DROP TABLE "users";
