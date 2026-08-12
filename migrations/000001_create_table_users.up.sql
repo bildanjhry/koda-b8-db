@@ -114,10 +114,11 @@ CREATE TABLE "reviews" (
     "updated_at" TIMESTAMP DEFAULT NOW()
 );
 
-CREATE TABLE "categories_products" (
+CREATE TABLE "products_categories" (
     "id_product" BIGINT REFERENCES "products"("id") ON DELETE CASCADE,
     "id_category" BIGINT REFERENCES "categories"("id") ON DELETE CASCADE
 );
+
 
 CREATE TABLE "products_events" (
     "id_event" BIGINT REFERENCES "events"("id") ON DELETE CASCADE,
@@ -155,6 +156,7 @@ CREATE TABLE "order_items" (
 CREATE TABLE "address" (
     "id" BIGINT GENERATED ALWAYS AS IDENTITY PRIMARY KEY,
     "id_user" BIGINT REFERENCES "users"("id"),
+    "status" INT,
     "fulladdress" TEXT,
     "city" VARCHAR(30),
     "province" VARCHAR(30),
